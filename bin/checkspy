@@ -1,0 +1,4 @@
+#!/bin/bash
+dir="solutionspy"
+
+black ${dir} && isort --profile black ${dir} && flake8 ${dir} && pylint ${dir}
