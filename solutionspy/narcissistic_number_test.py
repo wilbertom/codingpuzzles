@@ -1,4 +1,4 @@
-from narcissistic_number import narcissistic
+from .narcissistic_number import narcissistic
 
 
 def test_narcissistic():
