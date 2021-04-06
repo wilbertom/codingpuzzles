@@ -1,6 +1,6 @@
 # https://www.codewars.com/kata/5287e858c6b5a9678200083c/train/python
 
-from .lib.digits import digits
+from .library.digits import digits
 
 
 def narcissistic(value):
