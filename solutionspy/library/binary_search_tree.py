@@ -23,12 +23,12 @@ class BinarySearchTree:
             if self.right is None:
                 self.right = BinarySearchTree(value=value)
             else:
-                self.right.insert(self.value)
+                self.right.insert(value)
         elif value < self.value:
             if self.left is None:
                 self.left = BinarySearchTree(value=value)
             else:
-                self.left.insert(self.value)
+                self.left.insert(value)
         else:
             return self
 
@@ -36,6 +36,9 @@ class BinarySearchTree:
         pass
 
     def __eq__(self, other):
+        if other is None:
+            return False
+
         return (
             self.left == other.left
             and self.value == other.value

@@ -2,12 +2,19 @@ from .binary_search_tree import BinarySearchTree
 
 
 def test_from_collection():
-    assert BinarySearchTree.from_collection([33, 35, 54, 37, 41]) == BinarySearchTree(
+    tree = BinarySearchTree.from_collection([33, 35, 54, 37, 41])
+
+    assert tree == BinarySearchTree(
         value=33,
         right=BinarySearchTree(
             value=35,
             right=BinarySearchTree(
-                left=BinarySearchTree(value=37, right=BinarySearchTree(value=41)),
+                left=BinarySearchTree(
+                    value=37,
+                    right=BinarySearchTree(
+                        value=41,
+                    ),
+                ),
                 value=54,
             ),
         ),
