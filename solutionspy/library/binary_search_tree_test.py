@@ -21,7 +21,7 @@ def test_from_collection():
     )
 
 
-def test_insert_simple_inserts():
+def test_simple_inserts():
     tree = BinarySearchTree(value=2)
     tree.insert(1)
     tree.insert(3)
@@ -31,3 +31,17 @@ def test_insert_simple_inserts():
         value=2,
         right=BinarySearchTree(value=3),
     )
+
+
+def test_simple_searches():
+    tree = BinarySearchTree.from_collection([33, 35, 54, 37, 41])
+
+    assert tree.search(33) == 33
+    assert tree.search(35) == 35
+    assert tree.search(54) == 54
+    assert tree.search(37) == 37
+    assert tree.search(41) == 41
+
+    assert tree.search(44) is None
+    assert tree.search(1) is None
+    assert tree.search(0) is None

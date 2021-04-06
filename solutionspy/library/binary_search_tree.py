@@ -16,7 +16,12 @@ class BinarySearchTree:
         return tree
 
     def search(self, value):
-        pass
+        if value == self.value:
+            return value
+        elif value > self.value:
+            return None if self.right is None else self.right.search(value)
+        elif value < self.value:
+            return None if self.left is None else self.left.search(value)
 
     def insert(self, value):
         if value > self.value:
