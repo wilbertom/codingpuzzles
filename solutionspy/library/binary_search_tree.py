@@ -109,3 +109,34 @@ class BinarySearchTree:
 
     def __repr__(self):
         return f"({self.left}, {self.value}, {self.right})"
+
+    def __iter__(self):
+        return _BinarySearchTreeIterator(self)
+
+
+class _BinarySearchTreeIterator:
+    def __init__(self, bst):
+        self._bst = bst
+
+        self._position = 0
+        self._list = self._sorted([], self._bst)
+
+    def __next__(self):
+        if self._position == len(self._list):
+            raise StopIteration
+
+        current = self._list[self._position]
+        self._position += 1
+
+        return current
+
+    def _sorted(self, agg, node):
+        if node.left is not None:
+            self._sorted(agg, node.left)
+
+        agg.append(node.value)
+
+        if node.right is not None:
+            self._sorted(agg, node.right)
+
+        return agg

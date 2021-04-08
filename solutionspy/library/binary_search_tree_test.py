@@ -1,3 +1,5 @@
+import random
+
 from .binary_search_tree import BinarySearchTree
 
 
@@ -134,3 +136,20 @@ def test_deleting_when_the_node_has_both_children():
             right=BinarySearchTree(value=80),
         ),
     )
+
+
+def test_sorted_iteration():
+    collection = [
+        "Alice in Wonderland",
+        "Great Expectations",
+        "Lord of the Flies",
+        "Moby Dick",
+        "Pride and Prejudice",
+        "Robin Crusoe",
+        "The Odyssey",
+    ]
+    random.shuffle(collection)
+
+    tree = BinarySearchTree.from_collection(collection)
+
+    assert [value for value in tree] == sorted(collection)
