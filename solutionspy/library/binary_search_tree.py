@@ -38,7 +38,64 @@ class BinarySearchTree:
             return self
 
     def delete(self, value):
-        pass
+        return self._delete(None, value)
+
+    def _delete(self, parent, value):
+        if value == self.value:
+            self._delete_node(parent)
+        elif value > self.value:
+            if self.right is None:
+                return None
+            else:
+                self.right._delete(self, value)
+        elif value < self.value:
+            if self.left is None:
+                return None
+            else:
+                self.left._delete(self, value)
+        else:
+            raise RuntimeError("Logic error")
+
+    def _delete_node(self, parent):
+        if self._leaf:
+            parent._replace_with(self, None)
+        elif self._only_right_child:
+            parent._replace_with(self, self.right)
+        elif self._only_left_child:
+            parent._replace_with(self, self.left)
+        else:
+            successor_node = self._find_successor_node()
+            self.value = successor_node.value
+
+    def _replace_with(self, old, new):
+        if self.left == old:
+            self.left = new
+        elif self.right == old:
+            self.right = new
+        else:
+            RuntimeError("Logic error")
+
+    def _find_successor_node(self):
+        return self.right._leftmost_leaf(self)
+
+    def _leftmost_leaf(self, parent):
+        if self.left is None:
+            parent._replace_with(self, None)
+            return self
+        else:
+            return self.left._leftmost_leaf(self)
+
+    @property
+    def _leaf(self):
+        return self.left is None and self.right is None
+
+    @property
+    def _only_right_child(self):
+        return self.right is not None and self.left is None
+
+    @property
+    def _only_left_child(self):
+        return self.left is not None and self.right is None
 
     def __eq__(self, other):
         if other is None:
